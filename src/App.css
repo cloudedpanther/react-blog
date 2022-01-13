@@ -7,6 +7,30 @@
   pointer-events: none;
 }
 
+.header-nav {
+  background-color: black;
+  color: white;
+  display: flex;
+}
+
+.header-title {
+  margin: 0px 30px;
+}
+
+.header-title h4 {
+  position: relative;
+  top: -1px;
+}
+
+.list {
+  padding: 0px 20px;
+  text-align: start;
+}
+
+.post {
+  list-style: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
