@@ -10,7 +10,17 @@ function App() {
     "영어독해의 열쇠",
     "꾸준히 하는 것의 무서움",
   ]);
-  const [likes, changeLikes] = useState(0);
+  const [likes, changeLikes] = useState([0]);
+
+  const addLikes = () => {
+    let newLikes = [...likes];
+    newLikes[0]++;
+    changeLikes(newLikes);
+  };
+
+  const sortPosts = () => {
+    changePostTitle([...postTitle].sort());
+  };
 
   return (
     <div className="App">
@@ -19,17 +29,13 @@ function App() {
           <h4>My Blog</h4>
         </div>
       </nav>
+
+      <button onClick={sortPosts}>정렬</button>
+
       <ul className="list">
         <li className="post">
           <h4 className="post-title">
-            {postTitle[0]}{" "}
-            <span
-              onClick={() => {
-                changeLikes(likes + 1);
-              }}>
-              👍
-            </span>{" "}
-            {likes}
+            {postTitle[0]} <span onClick={addLikes}>👍</span> {likes}
           </h4>
           <p className="post-date">2월 17일 발행</p>
           <hr></hr>
@@ -45,6 +51,18 @@ function App() {
           <hr></hr>
         </li>
       </ul>
+
+      <Modal></Modal>
+    </div>
+  );
+}
+
+function Modal() {
+  return (
+    <div className="modal">
+      <h2>제목</h2>
+      <p>날짜</p>
+      <p>상세내용</p>
     </div>
   );
 }
