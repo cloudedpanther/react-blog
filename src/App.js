@@ -29,6 +29,12 @@ function App() {
     changeModal(!modal);
   };
 
+  const savePost = () => {
+    changePostTitle([...postTitle, inputValue]);
+    changeInputValue("");
+    changeLikes([...likes, 0]);
+  };
+
   return (
     <div className="App">
       <nav className="header-nav">
@@ -60,6 +66,11 @@ function App() {
       </ul>
 
       {/* <input onChange={(e) => changeInputValue(e.target.value)} /> */}
+
+      <div className="publish">
+        <input onChange={(e) => changeInputValue(e.target.value)} />
+        <button onClick={savePost}>저장</button>
+      </div>
 
       <button onClick={toggleModal}>버튼</button>
 
