@@ -12,6 +12,7 @@ function App() {
   ]);
   const [likes, changeLikes] = useState([0, 0, 0]);
   const [modal, changeModal] = useState(false);
+  const [modalNumber, changeModalNumber] = useState(0);
 
   const addLikes = (index) => {
     let newLikes = [...likes];
@@ -44,7 +45,9 @@ function App() {
         {postTitle.map((title, index) => {
           return (
             <li className="post" key={index}>
-              <h4 className="post-title">
+              <h4
+                className="post-title"
+                onClick={() => changeModalNumber(index)}>
                 {title} <span onClick={() => addLikes(index)}>👍</span>{" "}
                 {likes[index]}
               </h4>
@@ -57,7 +60,9 @@ function App() {
 
       <button onClick={toggleModal}>버튼</button>
 
-      {modal ? <Modal postTitle={postTitle}></Modal> : null}
+      {modal ? (
+        <Modal postTitle={postTitle} modalNumber={modalNumber}></Modal>
+      ) : null}
     </div>
   );
 }
@@ -65,7 +70,7 @@ function App() {
 function Modal(props) {
   return (
     <div className="modal">
-      <h2>{props.postTitle[0]}</h2>
+      <h2>{props.postTitle[props.modalNumber]}</h2>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
