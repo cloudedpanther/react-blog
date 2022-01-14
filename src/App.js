@@ -13,6 +13,7 @@ function App() {
   const [likes, changeLikes] = useState([0, 0, 0]);
   const [modal, changeModal] = useState(false);
   const [modalNumber, changeModalNumber] = useState(0);
+  const [inputValue, changeInputValue] = useState("");
 
   const addLikes = (index) => {
     let newLikes = [...likes];
@@ -57,6 +58,8 @@ function App() {
           );
         })}
       </ul>
+
+      {/* <input onChange={(e) => changeInputValue(e.target.value)} /> */}
 
       <button onClick={toggleModal}>버튼</button>
 
