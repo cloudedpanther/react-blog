@@ -33,6 +33,7 @@
 
 .modal {
   background-color: #eee;
+  padding: 20px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

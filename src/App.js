@@ -10,16 +10,21 @@ function App() {
     "영어독해의 열쇠",
     "꾸준히 하는 것의 무서움",
   ]);
-  const [likes, changeLikes] = useState([0]);
+  const [likes, changeLikes] = useState([0, 0, 0]);
+  const [modal, changeModal] = useState(false);
 
-  const addLikes = () => {
+  const addLikes = (index) => {
     let newLikes = [...likes];
-    newLikes[0]++;
+    newLikes[index]++;
     changeLikes(newLikes);
   };
 
   const sortPosts = () => {
     changePostTitle([...postTitle].sort());
+  };
+
+  const toggleModal = () => {
+    changeModal(!modal);
   };
 
   return (
@@ -33,26 +38,23 @@ function App() {
       <button onClick={sortPosts}>정렬</button>
 
       <ul className="list">
-        <li className="post">
-          <h4 className="post-title">
-            {postTitle[0]} <span onClick={addLikes}>👍</span> {likes}
-          </h4>
-          <p className="post-date">2월 17일 발행</p>
-          <hr></hr>
-        </li>
-        <li className="post">
-          <h4 className="post-title">{postTitle[1]}</h4>
-          <p className="post-date">2월 12일 발행</p>
-          <hr></hr>
-        </li>
-        <li className="post">
-          <h4 className="post-title">{postTitle[2]}</h4>
-          <p className="post-date">2월 08일 발행</p>
-          <hr></hr>
-        </li>
+        {postTitle.map((title, index) => {
+          return (
+            <li className="post" key={index}>
+              <h4 className="post-title">
+                {title} <span onClick={() => addLikes(index)}>👍</span>{" "}
+                {likes[index]}
+              </h4>
+              <p className="post-date">2월 17일 발행</p>
+              <hr></hr>
+            </li>
+          );
+        })}
       </ul>
 
-      <Modal></Modal>
+      <button onClick={toggleModal}>버튼</button>
+
+      {modal ? <Modal></Modal> : null}
     </div>
   );
 }
