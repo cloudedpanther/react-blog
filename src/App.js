@@ -38,6 +38,9 @@ function App() {
       <button onClick={sortPosts}>정렬</button>
 
       <ul className="list">
+        {/* or you can use for loop inside a function */}
+        {/* but not forEach loop itself*/}
+        {/* because it has no return value  */}
         {postTitle.map((title, index) => {
           return (
             <li className="post" key={index}>
@@ -54,15 +57,15 @@ function App() {
 
       <button onClick={toggleModal}>버튼</button>
 
-      {modal ? <Modal></Modal> : null}
+      {modal ? <Modal postTitle={postTitle}></Modal> : null}
     </div>
   );
 }
 
-function Modal() {
+function Modal(props) {
   return (
     <div className="modal">
-      <h2>제목</h2>
+      <h2>{props.postTitle[0]}</h2>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
